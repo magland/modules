@@ -1,0 +1,30 @@
+[submodule "mountainlab"]
+	path = mountainlab
+	url = https://github.com/flatironinstitute/mountainlab
+[submodule "mlpipeline"]
+	path = mlpipeline
+	url = https://github.com/flatironinstitute/mlpipeline
+[submodule "mountainview"]
+	path = mountainview
+	url = https://github.com/flatironinstitute/mountainview
+[submodule "packages/mountainsort"]
+	path = packages/mountainsort
+	url = https://github.com/flatironinstitute/mountainsort
+[submodule "cloud_apps/docstor"]
+	path = cloud_apps/docstor
+	url = https://github.com/magland/docstor
+[submodule "cloud_apps/kulele"]
+	path = cloud_apps/kulele
+	url = https://github.com/magland/kulele
+[submodule "cloud_apps/mlbot"]
+	path = cloud_apps/mlbot
+	url = https://github.com/magland/mlbot
+[submodule "cloud_apps/slackarchive"]
+	path = cloud_apps/slackarchive
+	url = https://github.com/magland/slackarchive
+[submodule "cloud_apps/url4text"]
+	path = cloud_apps/url4text
+	url = https://github.com/magland/url4text
+[submodule "cloud_apps/kbucket"]
+	path = cloud_apps/kbucket
+	url = https://github.com/magland/kbucket

@@ -1,0 +1,110 @@
+#!/usr/bin/env nodejs
+
+var fs=require('fs');
+
+var arg1=process.argv[2]||'';
+var arg2=process.argv[3]||'';
+var to_use='';
+var fname0='';
+if (arg1=='use') {
+	to_use=arg2;
+}
+else fname0=arg1;
+
+var to_use_fname='';
+if (to_use) {
+	to_use_fname=require('path').basename(to_use);
+}
+
+all_files=all_files_in_folder('.',true);
+var files_by_filename={};
+for (var i=0; i<all_files.length; i++) {
+	var path0=all_files[i];
+	if (require('path').extname(path0)=='.js') {
+		var fname=require('path').basename(path0);
+		if (fname in files_by_filename) {
+			files_by_filename[fname].push(path0);
+		}
+		else {
+			files_by_filename[fname]=[path0];
+		}
+	}
+}
+for (var fname in files_by_filename) {
+	if (((!to_use)&&(!fname0))||(fname==to_use_fname)||(fname==fname0)) {
+		var list=files_by_filename[fname];
+		if (list.length>1) {
+			var sha1s=[];
+			var unique_sha1s={};
+			for (var i=0; i<list.length; i++) {
+				var sha1=compute_sha1sum(list[i]);
+				sha1s.push(sha1);
+				unique_sha1s[sha1]=1;
+			}
+			unique_sha1s=Object.keys(unique_sha1s);
+			if (unique_sha1s.length>1) {
+				console.log (fname);
+				for (var i=0; i<unique_sha1s.length; i++) {
+					for (var j=0; j<list.length; j++) {
+						if (sha1s[j]==unique_sha1s[i]) {
+							console.log ('    '+list[j]+' '+date_modified(list[j]));
+							if (to_use) {
+								if (list[j]!=to_use) {
+									var str1=compute_sha1sum(list[j]);
+									var str2=compute_sha1sum(to_use);
+									if (str1!=str2) {
+										console.log(list[j]+' ----- '+to_use);
+										console.log(str1+' <> '+str2);
+										require('child_process').execSync('meld '+to_use+' '+list[j]);
+									}
+								}
+							}
+						}
+					}
+					console.log ('');
+				}
+			}
+		}
+	}
+}
+
+function compute_sha1sum(path) {
+	var ret=require('child_process').execSync('sha1sum '+path);
+	return ret.slice(0,40);
+}
+
+function all_files_in_folder(folder,recursive) {
+	var filenames=require('fs').readdirSync(folder);
+	var ret=[];
+	for (var i=0; i<filenames.length; i++) {
+		if ((filenames[i]!='node_modules')&&(filenames[i]!='build')) {
+			var path0=folder+'/'+filenames[i];
+			if (is_directory(path0)) {
+				if (recursive) {
+					var tmp=all_files_in_folder(path0,recursive);
+					for (var j=0; j<tmp.length; j++) {
+						ret.push(tmp[j]);
+					}
+				}
+			}
+			else {
+				ret.push(folder+'/'+filenames[i]);
+			}
+		}
+	}
+	return ret;
+}
+
+function date_modified(path) {
+	var stat=fs.statSync(path);
+	return stat.mtime;
+}
+
+function is_directory(path) {
+	try {
+		return require('fs').statSync(path).isDirectory();
+	}
+	catch(err) {
+		return false;
+	}
+}
