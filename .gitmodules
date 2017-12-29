@@ -31,3 +31,6 @@
 [submodule "mountainsort_examples"]
 	path = mountainsort_examples
 	url = https://github.com/flatironinstitute/mountainsort_examples
+[submodule "dev_utils/ml-build-debian"]
+	path = dev_utils/ml-build-debian
+	url = https://github.com/magland/ml-build-debian
