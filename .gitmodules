@@ -28,3 +28,6 @@
 [submodule "cloud_apps/kbucket"]
 	path = cloud_apps/kbucket
 	url = https://github.com/magland/kbucket
+[submodule "mountainsort_examples"]
+	path = mountainsort_examples
+	url = https://github.com/flatironinstitute/mountainsort_examples
