@@ -34,3 +34,12 @@
 [submodule "dev_utils/ml-build-debian"]
 	path = dev_utils/ml-build-debian
 	url = https://github.com/magland/ml-build-debian
+[submodule "cloud_apps/cordion"]
+	path = cloud_apps/cordion
+	url = https://github.com/magland/cordion
+[submodule "cloud_apps/mlstudy"]
+	path = cloud_apps/mlstudy
+	url = https://github.com/magland/mlstudy
+[submodule "cloud_apps/kbucketauth"]
+	path = cloud_apps/kbucketauth
+	url = https://github.com/magland/kbucketauth
