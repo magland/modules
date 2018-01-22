@@ -43,3 +43,9 @@
 [submodule "cloud_apps/kbucketauth"]
 	path = cloud_apps/kbucketauth
 	url = https://github.com/magland/kbucketauth
+[submodule "cloud_apps/tidbits"]
+	path = cloud_apps/tidbits
+	url = https://github.com/magland/tidbits.git
+[submodule "packages/kbucket_upload"]
+	path = packages/kbucket_upload
+	url = https://github.com/magland/kbucket_upload
