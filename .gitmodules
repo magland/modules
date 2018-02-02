@@ -49,3 +49,7 @@
 [submodule "packages/kbucket_upload"]
 	path = packages/kbucket_upload
 	url = https://github.com/magland/kbucket_upload
+[submodule "cloud_apps/spikeforest"]
+	path = cloud_apps/spikeforest
+	url = https://github.com/magland/spikeforest
+	branch = master
